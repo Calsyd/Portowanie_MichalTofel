@@ -9,11 +9,11 @@ public class CameraHit : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-
-            if (rayHit.transform.GetComponent<Shield>() != null)
+            if (rayHit == false)
+                return;
+            if (rayHit.transform.TryGetComponent(out Shield shield))
             {
-                rayHit.transform.GetComponent<Shield>().Click();
-                Debug.Log("Click Shield");
+                shield.Click();
             }
 
             Debug.Log(rayHit.transform.name);
